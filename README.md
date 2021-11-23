@@ -1,0 +1,1 @@
+# graphql-typescript-starter-project
