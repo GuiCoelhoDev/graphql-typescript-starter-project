@@ -10,9 +10,17 @@
     "build": "yarn -s run clean && tsc"
   },
   "dependencies": {
+    "@prisma/client": "^3.5.0",
     "apollo-server": "^3.5.0",
     "graphql": "^16.0.1",
     "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "prisma": "^3.5.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
