@@ -1,0 +1,52 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "standard",
+    "plugin:prettier/recommended",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "next"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  },
+  "plugins": [
+    "eslint-plugin-import-helpers",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "import/namespace": ["error", { "allowComputed": true }],
+    "camelcase": ["error",{ "properties": "never", "ignoreDestructuring": true }],
+    "import-helpers/order-imports": [
+        "error",
+        {
+            "newlinesBetween": "always",
+            "groups": [
+                "module",
+                [
+                    "/^assets/",
+                    "/^components/",
+                    "/^screens/"
+                ],
+                ["parent", "sibling", "index"]
+            ],
+            "alphabetize": { "order": "asc", "ignoreCase": true }
+        }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn"
+  }
+}
