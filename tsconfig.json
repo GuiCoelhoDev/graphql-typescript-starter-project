@@ -2,12 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "assets": ["./api/src/assets"],
-      "assets/*": ["./api/src/assets/*"],
-      "components": ["./api/src/components"],
-      "components/*": ["./api/src/components/*"],
-      "screens": ["./api/src/screens"],
-      "screens/*": ["./api/src/screens/*"],
     },
     "strict": true,
     "noUnusedLocals": true,
