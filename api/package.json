@@ -2,5 +2,17 @@
   "name": "@starter-project/api",
   "version": "1.0.0",
   "author": "Thales Menezes <thlmenezes@pm.me>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "start": "node dist/server",
+    "clean": "rm -rf dist",
+    "build": "yarn -s run clean && tsc"
+  },
+  "dependencies": {
+    "apollo-server": "^3.5.0",
+    "graphql": "^16.0.1",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8"
+  }
 }
