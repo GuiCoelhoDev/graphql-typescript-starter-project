@@ -1,6 +1,8 @@
 {
   "name": "@starter-project/web",
   "version": "1.0.0",
+  "author": "Thales Menezes <thlmenezes@pm.me>",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
