@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@starter-project/api/*" : ["api/src/*"]
     },
     "strict": true,
     "noUnusedLocals": true,
