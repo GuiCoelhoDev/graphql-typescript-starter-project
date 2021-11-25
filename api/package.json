@@ -4,21 +4,26 @@
   "author": "Thales Menezes <thlmenezes@pm.me>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
-    "start": "node dist/server",
+    "dev": "ts-node-dev -r dotenv/config --no-notify --respawn --transpile-only src/server",
+    "start": "node -r dotenv/config dist/server",
     "clean": "rm -rf dist",
-    "build": "yarn -s run clean && tsc"
+    "build": "yarn -s run clean && yarn -s run generate && tsc",
+    "generate": "yarn -s run generate:prisma && yarn -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema"
   },
   "dependencies": {
     "@prisma/client": "^3.5.0",
     "apollo-server": "^3.5.0",
-    "graphql": "^16.0.1",
-    "ts-node": "^10.4.0",
-    "ts-node-dev": "^1.1.8"
+    "dotenv": "^10.0.0",
+    "graphql": "14.6.0",
+    "nexus": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.10",
-    "prisma": "^3.5.0"
+    "prisma": "^3.5.0",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
