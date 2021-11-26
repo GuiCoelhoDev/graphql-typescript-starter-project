@@ -6,29 +6,28 @@ import {
   nonNull,
   objectType,
   queryField,
-  queryType,
   intArg,
 } from "nexus";
 
 const User = objectType({
   name: "User",
   definition(t) {
-    t.nonNull.int("id");
-    t.string("name");
-    t.nonNull.string("email");
+    t.nonNull.int("id", { description: 'Unique identifier for the resource' });
+    t.string("name", { description: 'User\'s name' });
+    t.nonNull.string("email", { description: 'User\'s best email address' });
   },
+  description: 'Represents a person'
 });
 
-const queryAllUsers = queryType({
-  definition(t) {
-    t.nonNull.list.nonNull.field("allUsers", {
-      type: "User",
-      resolve: (_parent, _args, context: Context) => {
-        return context.prisma.user.findMany();
-      },
-    });
-  },
-});
+const queryAllUsers = queryField((t) => {
+  t.nonNull.list.nonNull.field("allUsers", {
+    type: "User",
+    resolve: (_parent, _args, context: Context) => {
+      return context.prisma.user.findMany();
+    },
+    description: 'Fetches All Users from db'
+  });
+})
 
 const queryOneUser = queryField((t) => {
   t.field("user", {
@@ -45,6 +44,7 @@ const queryOneUser = queryField((t) => {
         },
       });
     },
+    description: 'Fetches One User from db using any of its field as search key'
   });
 });
 
@@ -57,6 +57,7 @@ const createUser = mutationField((t) => {
     resolve: (_parent, args, context: Context) => {
       return context.prisma.user.create({ data: args.data });
     },
+    description: 'Creates One User on db'
   });
 });
 
@@ -78,6 +79,7 @@ const patchUser = mutationField((t) => {
         },
       });
     },
+    description: 'Updates One User info on db using its id as search key'
   });
 });
 
@@ -87,6 +89,7 @@ const UserCreateInput = inputObjectType({
     t.string("name");
     t.nonNull.string("email");
   },
+  description: 'Type definition for creating a User'
 });
 
 const UserUpdateInput = inputObjectType({
@@ -95,6 +98,7 @@ const UserUpdateInput = inputObjectType({
     t.string("name");
     t.string("email");
   },
+  description: 'Type definition for updating a User'
 });
 
 const UserWhereInput = inputObjectType({
@@ -104,6 +108,7 @@ const UserWhereInput = inputObjectType({
     t.string("name");
     t.string("email");
   },
+  description: 'Type definition for searching (where) a User'
 });
 
 export const userTypes = {
