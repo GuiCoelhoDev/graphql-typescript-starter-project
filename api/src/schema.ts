@@ -1,7 +1,9 @@
+import { applyMiddleware } from 'graphql-middleware'
 import { makeSchema } from "nexus";
 import path from "path";
 
 import { userTypes } from "./graphql/User";
+import { permissions } from "./permissions";
 
 const publicSchema = makeSchema({
   types: [userTypes],
@@ -23,4 +25,4 @@ const publicSchema = makeSchema({
   },
 });
 
-export const schema = publicSchema;
+export const schema = applyMiddleware(publicSchema, permissions)
