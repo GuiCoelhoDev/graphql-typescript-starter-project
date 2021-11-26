@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker-compose run --rm -p 5432:5432 postgres
+docker run --rm -p 5432:5432 --name graphql-postgres --env-file .env postgres
