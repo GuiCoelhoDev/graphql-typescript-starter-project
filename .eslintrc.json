@@ -6,11 +6,11 @@
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:import/typescript",
     "standard",
     "plugin:prettier/recommended",
     "prettier",
-    "plugin:@typescript-eslint/recommended",
-    "next"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -25,6 +25,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "import/no-unresolved": ["error", { "ignore": [ "^@starter-project" ] }],
     "import/namespace": ["error", { "allowComputed": true }],
     "camelcase": ["error",{ "properties": "never", "ignoreDestructuring": true }],
     "import-helpers/order-imports": [

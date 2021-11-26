@@ -4,6 +4,3 @@ node_modules/**/*
 yarn-error.log
 yarn.lock
 .yarn/**/*
-
-# API
-api/src/generated/**/*
