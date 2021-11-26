@@ -6,6 +6,7 @@ This project uses the following stack:
 
 - [**Apollo Server**](https://github.com/apollographql/apollo-server): HTTP server for GraphQL APIs
 - [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation
+- [**GraphQL Shield**](https://github.com/maticzav/graphql-shield): Authorization/permission layer for GraphQL schemas
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations           
 - [**PostgreSQL**](https://www.postgresql.org/): Open Source Relational Database
@@ -42,10 +43,16 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=<POSTGRES_PASSWORD>
 POSTGRES_PORT=5432
 POSTGRES_DB=development
+PGDATA=/var/lib/postgresql/data/pgdata
 DATABASE_URL=postgresql://postgres:<POSTGRES_PASSWORD>@localhost:5432/development?schema=public
 ```
 
 create a password and substitute `<POSTGRES_PASSWORD>`
+
+create a docker volume
+```bash
+docker volume create graphql_postgres
+```
 
 `DATABASE_URL` will be used by prisma in [`prisma/schema.prisma`](./prisma/schema.prisma)
 
@@ -63,8 +70,18 @@ Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.
 yarn prisma db seed
 ```
 
+### 3. Create APP_SECRET variable
 
-### 3. Start the GraphQL server
+Add a new variable to `.env`
+
+```
+APP_SECRET=<YOUR-APP-SECRET>
+```
+
+This will be used in Authentication
+
+
+### 4. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
