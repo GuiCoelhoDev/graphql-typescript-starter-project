@@ -3,13 +3,7 @@ import { compare } from "bcryptjs";
 import { allow, rule, shield } from "graphql-shield";
 
 import { Context } from "../context";
-import { getUserId } from "../utils";
-
-function findUser(email: string, context: Context) {
-  return context.prisma.user.findUnique({
-    where: { email },
-  });
-}
+import { getUserId, findUser } from "../utils";
 
 const rules = {
   isAuthenticatedUser: rule()((_parent, _args, context: Context) => {
@@ -34,6 +28,7 @@ const rules = {
 export const permissions = shield(
   {
     Query: {
+      "*": allow,
       allUsers: allow,
       whoami: rules.isAuthenticatedUser,
     },
@@ -44,5 +39,6 @@ export const permissions = shield(
   },
   {
     fallbackRule: allow,
+    // allowExternalErrors: true, // NOTE: when debugging enable this
   }
 );

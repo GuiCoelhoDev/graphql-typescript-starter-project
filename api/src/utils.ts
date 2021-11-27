@@ -16,3 +16,9 @@ export function getUserId(context: Context) {
     return verifiedToken && Number(verifiedToken.userId);
   }
 }
+
+export function findUser(email: string, context: Context) {
+  return context.prisma.user.findUnique({
+    where: { email },
+  });
+}
