@@ -1,4 +1,4 @@
-import { Context } from "@starter-project/api/context";
+import { Context } from "../context";
 import { hash } from "bcryptjs";
 import {
   arg,
