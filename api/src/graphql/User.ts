@@ -9,7 +9,7 @@ import {
   intArg,
 } from "nexus";
 
-const User = objectType({
+export const User = objectType({
   name: "User",
   definition(t) {
     t.nonNull.int("id", { description: 'Unique identifier for the resource' });
@@ -19,7 +19,7 @@ const User = objectType({
   description: 'Represents a person'
 });
 
-const queryAllUsers = queryField((t) => {
+export const queryAllUsers = queryField((t) => {
   t.nonNull.list.nonNull.field("allUsers", {
     type: "User",
     resolve: (_parent, _args, context: Context) => {
@@ -29,7 +29,7 @@ const queryAllUsers = queryField((t) => {
   });
 })
 
-const queryOneUser = queryField((t) => {
+export const queryOneUser = queryField((t) => {
   t.field("user", {
     type: User,
     args: {
@@ -48,7 +48,7 @@ const queryOneUser = queryField((t) => {
   });
 });
 
-const createUser = mutationField((t) => {
+export const createUser = mutationField((t) => {
   t.field("createUser", {
     type: User,
     args: {
@@ -61,7 +61,7 @@ const createUser = mutationField((t) => {
   });
 });
 
-const patchUser = mutationField((t) => {
+export const patchUser = mutationField((t) => {
   t.field("editUser", {
     type: User,
     args: {
@@ -83,7 +83,7 @@ const patchUser = mutationField((t) => {
   });
 });
 
-const UserCreateInput = inputObjectType({
+export const UserCreateInput = inputObjectType({
   name: "UserCreateInput",
   definition(t) {
     t.string("name");
@@ -92,7 +92,7 @@ const UserCreateInput = inputObjectType({
   description: 'Type definition for creating a User'
 });
 
-const UserUpdateInput = inputObjectType({
+export const UserUpdateInput = inputObjectType({
   name: "UserUpdateInput",
   definition(t) {
     t.string("name");
@@ -101,7 +101,7 @@ const UserUpdateInput = inputObjectType({
   description: 'Type definition for updating a User'
 });
 
-const UserWhereInput = inputObjectType({
+export const UserWhereInput = inputObjectType({
   name: "UserWhereInput",
   definition(t) {
     t.int("id");
