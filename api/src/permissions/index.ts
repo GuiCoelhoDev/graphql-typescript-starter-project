@@ -35,6 +35,7 @@ export const permissions = shield(
   {
     Query: {
       allUsers: allow,
+      whoami: rules.isAuthenticatedUser,
     },
     Mutation: {
       "*": allow,
