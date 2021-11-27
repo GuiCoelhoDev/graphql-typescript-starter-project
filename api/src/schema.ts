@@ -1,4 +1,4 @@
-import { applyMiddleware } from 'graphql-middleware'
+import { applyMiddleware } from "graphql-middleware";
 import { makeSchema } from "nexus";
 import path from "path";
 
@@ -25,4 +25,4 @@ const publicSchema = makeSchema({
   },
 });
 
-export const schema = applyMiddleware(publicSchema, permissions)
+export const schema = applyMiddleware(publicSchema, permissions);
