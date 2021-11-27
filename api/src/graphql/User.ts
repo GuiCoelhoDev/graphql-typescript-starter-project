@@ -79,7 +79,22 @@ export const patchUser = mutationField((t) => {
         },
       });
     },
-    description: 'Updates One User info on db using its id as search key'
+    description: "Updates One User info on db using its id as search key",
+  });
+});
+
+export const deleteUser = mutationField((t) => {
+  t.field("deleteUser", {
+    type: User,
+    args: {
+      id: nonNull(intArg()),
+    },
+    resolve: async (_parent, { id }, context: Context) => {
+      return context.prisma.user.delete({
+        where: { id },
+      });
+    },
+    description: "Deletes One User info on db using its id as search key",
   });
 });
 
@@ -117,6 +132,7 @@ export const userTypes = {
   queryOneUser,
   createUser,
   patchUser,
+  deleteUser,
   UserCreateInput,
   UserUpdateInput,
   UserWhereInput,
